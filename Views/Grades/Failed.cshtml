@@ -1,0 +1,29 @@
+@model IEnumerable<oblig3dat154.Models.FailedStudentViewModel>
+
+@{
+    ViewData["Title"] = "Failed Students";
+}
+
+<h1>Failed Students</h1>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Student</th>
+            <th>Course</th>
+            <th>Course code</th>
+            <th>Grade</th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var row in Model)
+    {
+        <tr>
+            <td>@row.Studentname</td>
+            <td>@row.Coursename</td>
+            <td>@row.Coursecode</td>
+            <td>@row.Grade</td>
+        </tr>
+    }
+    </tbody>
+</table>

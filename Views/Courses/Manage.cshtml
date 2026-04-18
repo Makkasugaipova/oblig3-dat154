@@ -1,0 +1,46 @@
+@model oblig3dat154.Models.ManageEnrollmentViewModel
+
+@{
+    ViewData["Title"] = "Manage Course Participation";
+}
+
+<h1>Manage Course Participation</h1>
+
+<h2>Add student to course</h2>
+
+<form asp-action="AddEnrollment" method="post">
+    <div class="mb-3">
+        <label asp-for="Studentid" class="form-label">Student</label>
+        <select asp-for="Studentid" asp-items="Model.Students" class="form-select"></select>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Coursecode" class="form-label">Course</label>
+        <select asp-for="Coursecode" asp-items="Model.Courses" class="form-select"></select>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Grade1" class="form-label">Grade</label>
+        <select asp-for="Grade1" asp-items="Model.Grades" class="form-select"></select>
+    </div>
+
+    <button type="submit" class="btn btn-success">Add</button>
+</form>
+
+<hr />
+
+<h2>Remove student from course</h2>
+
+<form asp-action="RemoveEnrollment" method="post">
+    <div class="mb-3">
+        <label for="studentid" class="form-label">Student ID</label>
+        <input type="number" name="studentid" id="studentid" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label for="coursecode" class="form-label">Course code</label>
+        <input type="text" name="coursecode" id="coursecode" class="form-control" />
+    </div>
+
+    <button type="submit" class="btn btn-danger">Remove</button>
+</form>

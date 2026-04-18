@@ -1,0 +1,59 @@
+@model IEnumerable<oblig3dat154.Models.CourseGradesViewModel>
+@using oblig3dat154.Models
+
+@{
+    ViewData["Title"] = "Course Results";
+    var courses = ViewBag.Courses as List<Course>;
+}
+
+<h1>Course Results</h1>
+
+<form method="get">
+    <div class="mb-3">
+        <label for="selectedCourseCode" class="form-label">Select course</label>
+        <select name="selectedCourseCode" id="selectedCourseCode" class="form-select">
+            <option value="">-- Choose course --</option>
+            @if (courses != null)
+            {
+                foreach (var course in courses)
+                {
+                    if ((string?)ViewBag.SelectedCourseCode == course.Coursecode)
+                    {
+                        <option value="@course.Coursecode" selected>
+                            @course.Coursename (@course.Coursecode)
+                        </option>
+                    }
+                    else
+                    {
+                        <option value="@course.Coursecode">
+                            @course.Coursename (@course.Coursecode)
+                        </option>
+                    }
+                }
+            }
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Show students</button>
+</form>
+
+<hr />
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Course</th>
+            <th>Student</th>
+            <th>Grade</th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var row in Model)
+    {
+        <tr>
+            <td>@row.Coursename (@row.Coursecode)</td>
+            <td>@row.Studentname</td>
+            <td>@row.Grade</td>
+        </tr>
+    }
+    </tbody>
+</table>

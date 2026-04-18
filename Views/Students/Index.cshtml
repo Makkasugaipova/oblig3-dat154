@@ -1,0 +1,38 @@
+@model IEnumerable<oblig3dat154.Models.Student>
+
+@{
+    ViewData["Title"] = "Student Search";
+}
+
+<h1>Student Search</h1>
+
+<form method="get">
+    <div class="mb-3">
+        <label for="searchString" class="form-label">Search by part of student name</label>
+        <input type="text" id="searchString" name="searchString" class="form-control" value="@ViewBag.SearchString" />
+    </div>
+    <button type="submit" class="btn btn-primary">Search</button>
+    <a asp-action="Index" class="btn btn-secondary">Reset</a>
+</form>
+
+<hr />
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Student name</th>
+            <th>Age</th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var student in Model)
+    {
+        <tr>
+            <td>@student.Id</td>
+            <td>@student.Studentname</td>
+            <td>@student.Studentage</td>
+        </tr>
+    }
+    </tbody>
+</table>

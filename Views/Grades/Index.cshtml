@@ -1,0 +1,56 @@
+@model IEnumerable<oblig3dat154.Models.GradeFilterViewModel>
+
+@{
+    ViewData["Title"] = "Grade Filter";
+    var grades = ViewBag.ValidGrades as List<string>;
+}
+
+<h1>Grades equal to or better than selected grade</h1>
+
+<form method="get">
+    <div class="mb-3">
+        <label for="selectedGrade" class="form-label">Select grade</label>
+        <select name="selectedGrade" id="selectedGrade" class="form-select">
+            <option value="">-- Choose grade --</option>
+            @if (grades != null)
+            {
+                foreach (var grade in grades)
+                {
+                    if ((string?)ViewBag.SelectedGrade == grade)
+                    {
+                        <option value="@grade" selected>@grade</option>
+                    }
+                    else
+                    {
+                        <option value="@grade">@grade</option>
+                    }
+                }
+            }
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Filter</button>
+</form>
+
+<hr />
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Student</th>
+            <th>Course</th>
+            <th>Course code</th>
+            <th>Grade</th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var row in Model)
+    {
+        <tr>
+            <td>@row.Studentname</td>
+            <td>@row.Coursename</td>
+            <td>@row.Coursecode</td>
+            <td>@row.Grade</td>
+        </tr>
+    }
+    </tbody>
+</table>
